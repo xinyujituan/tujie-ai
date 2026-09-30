@@ -35,26 +35,35 @@ Click-select, letters, numbers, Q&A, brain teasers… If a human can read it, Tu
 
 ## Quick start
 
-Register, grab your API Key, then call the recognition API:
+1. Register at https://ai.xinyuocr.xyz and copy the `keyCode` from the console.
+2. POST JSON to the predict API. `errCode == 0` means success. The text or coordinates are in `msg`.
 
 ```bash
-curl -X POST "https://ai.xinyuocr.xyz/api/recognize" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -F "file=@captcha.jpg"
+curl -X POST "http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict" \
+  -H "Content-Type: application/json" \
+  -d "{\"base64Image\":\"BASE64_WITHOUT_DATA_URI_PREFIX\",\"modelName\":\"普通模型\",\"keyCode\":\"YOUR_KEYCODE\",\"question\":\"识别图中文本\"}"
 ```
-
-Sample response (see the official docs for the full spec):
 
 ```json
 {
-  "code": 0,
-  "data": {
-    "text": "73k9",
-    "confidence": 0.99,
-    "boxes": [[12, 8, 40, 30]]
-  }
+  "msg": "EXAMPLE TEXT 123",
+  "err": "",
+  "errCode": 0,
+  "tokens": 45,
+  "time": 320,
+  "record": "abcd1234"
 }
 ```
+
+| Field | Values |
+| --- | --- |
+| `modelName` | `免费模型` or `普通模型` |
+| `question` | `识别图中文本` / `回答图中问题` / `框出正确位置` |
+| image | raw base64 in `base64Image`. No `data:image/...;base64,` prefix |
+| overseas node | `http://43.164.131.46:8889/api/qrcode/predict` |
+| balance | `GET http://gpu1.xinyuocr.xyz:8889/api/qrcode/balance?keyCode=YOUR_KEYCODE` |
+
+Copy-paste samples: [examples/python.py](examples/python.py) · [examples/nodejs.js](examples/nodejs.js) · [examples/Program.cs](examples/Program.cs) · [examples/Predict.java](examples/Predict.java)
 
 ## Pricing
 
@@ -107,26 +116,48 @@ Website: https://ai.xinyuocr.xyz · QQ: 855902642 · WeChat: q77254558
 
 ### 🚀 快速开始
 
-注册账号获取 API Key 后，直接调用识别接口：
+1. 打开 https://ai.xinyuocr.xyz 注册，在控制台复制 `keyCode`。
+2. 向识别接口 POST JSON。用 `errCode == 0` 判断成功，文字或坐标在 `msg`。
 
-```bash
-curl -X POST "https://ai.xinyuocr.xyz/api/recognize" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -F "file=@captcha.jpg"
+国内节点：
+
+```text
+POST http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict
 ```
-
-返回示例（以实际接入文档为准）：
 
 ```json
 {
-  "code": 0,
-  "data": {
-    "text": "73k9",
-    "confidence": 0.99,
-    "boxes": [[12, 8, 40, 30]]
-  }
+  "base64Image": "图片base64，不要带 data:image 前缀",
+  "modelName": "普通模型",
+  "keyCode": "YOUR_KEYCODE",
+  "question": "识别图中文本"
 }
 ```
+
+成功返回：
+
+```json
+{
+  "msg": "EXAMPLE TEXT 123",
+  "err": "",
+  "errCode": 0,
+  "tokens": 45,
+  "time": 320,
+  "record": "abcd1234"
+}
+```
+
+| 字段 | 取值 |
+| --- | --- |
+| `modelName` | `免费模型` 或 `普通模型` |
+| `question` | `识别图中文本`、`回答图中问题`、`框出正确位置` |
+| 图片 | `base64Image` 传原始 base64，不要带 `data:image/...;base64,` |
+| 海外节点 | `http://43.164.131.46:8889/api/qrcode/predict` |
+| 查余额 | `GET http://gpu1.xinyuocr.xyz:8889/api/qrcode/balance?keyCode=YOUR_KEYCODE` |
+
+可直接复制的示例：[Python](examples/python.py) · [Node.js](examples/nodejs.js) · [C#](examples/Program.cs) · [Java](examples/Predict.java)
+
+在线试跑：https://ai.xinyuocr.xyz/predict2
 
 ### 💰 定价
 
