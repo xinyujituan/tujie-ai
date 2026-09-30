@@ -9,7 +9,7 @@ import java.util.Base64;
 
 public class Predict {
     public static void main(String[] args) throws Exception {
-        String api = "http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict";
+        String api = "http://ai.xinyuocr.xyz/api/qrcode/predict";
         String image = Base64.getEncoder().encodeToString(Files.readAllBytes(Path.of("demo.png")));
         String json = "{"
                 + "\"base64Image\":\"" + image + "\","

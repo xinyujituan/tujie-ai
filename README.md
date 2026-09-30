@@ -39,7 +39,7 @@ Click-select, letters, numbers, Q&A, brain teasers… If a human can read it, Tu
 2. POST JSON to the predict API. `errCode == 0` means success. The text or coordinates are in `msg`.
 
 ```bash
-curl -X POST "http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict" \
+curl -X POST "http://ai.xinyuocr.xyz/api/qrcode/predict" \
   -H "Content-Type: application/json" \
   -d "{\"base64Image\":\"BASE64_WITHOUT_DATA_URI_PREFIX\",\"modelName\":\"普通模型\",\"keyCode\":\"YOUR_KEYCODE\",\"question\":\"识别图中文本\"}"
 ```
@@ -122,7 +122,7 @@ Website: https://ai.xinyuocr.xyz · QQ: 855902642 · WeChat: q77254558
 国内节点：
 
 ```text
-POST http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict
+POST http://ai.xinyuocr.xyz/api/qrcode/predict
 ```
 
 ```json

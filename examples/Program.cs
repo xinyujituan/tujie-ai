@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
 
-const string Api = "http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict";
+const string Api = "http://ai.xinyuocr.xyz/api/qrcode/predict";
 string image = Convert.ToBase64String(File.ReadAllBytes("demo.png"));
 var payload = new
 {

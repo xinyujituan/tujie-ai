@@ -2,7 +2,7 @@ import base64
 import requests
 
 # 国内节点。海外把主机换成 43.164.131.46，端口仍是 8889。
-API = "http://gpu1.xinyuocr.xyz:8889/api/qrcode/predict"
+API = "http://ai.xinyuocr.xyz/api/qrcode/predict"
 # question: 识别图中文本 / 回答图中问题 / 框出正确位置
 # modelName: 免费模型 / 普通模型
 
